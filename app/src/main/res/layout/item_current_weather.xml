@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="weather"
+            type="com.mergencer.rtlcase.data.model.WeatherReport" />
+
+        <variable
+            name="onClickListener"
+            type="com.mergencer.rtlcase.ui.UserLocationsAdapter.OnClickListener" />
+
+        <variable
+            name="onLongClickListener"
+            type="com.mergencer.rtlcase.ui.UserLocationsAdapter.OnLongClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> onClickListener.onClick(weather)}"
+        app:onLongClick="@{() -> onLongClickListener.onLongClick(weather)}"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@{weather.placeAddress}"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            tools:text="Istanbul" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_location"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+            app:dateTime="@{weather.current.currentTime}"
+            tools:text="Cum 23:00," />
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/tv_time"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_time"
+            android:layout_marginStart="5dp"
+            app:briefDescription="@{weather.current}"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+            tools:text="Sunny" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_weather"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            app:weatherIcon="@{weather.current.weatherDescription}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_time" />
+
+        <TextView
+            android:id="@+id/tv_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/iv_weather"
+            app:layout_constraintTop_toTopOf="@+id/iv_weather"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_weather"
+            android:textStyle="bold"
+            android:text="@{String.format(@string/format_temperature, weather.current.temp)}"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
+            tools:text="17\u2103" />
+
+        <TextView
+            android:id="@+id/tv_feels_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_weather"
+            tools:text="Feels Like: 10%"
+            android:text="@{String.format(@string/format_feels_like, weather.current.feelsLike)}"
+
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
+
+        <TextView
+            android:id="@+id/tv_humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_feels_like"
+            tools:text="Humidity: 10%"
+            android:text="@{String.format(@string/format_humidity, weather.current.humidity)}"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
+
+        <TextView
+            android:id="@+id/tv_wind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_humidity"
+            tools:text="Wind: 18 km/h"
+            android:text="@{String.format(@string/format_wind, weather.current.windSpeed)}"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/background_dark"
+            app:layout_constraintTop_toBottomOf="@+id/tv_wind"
+            android:layout_marginTop="10dp"
+            android:alpha="0.1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

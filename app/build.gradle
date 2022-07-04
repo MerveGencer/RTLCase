@@ -1,0 +1,138 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.mergencer.rtlcase"
+        minSdk 21
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    packagingOptions {
+        jniLibs {
+            excludes += ['META-INF/*']
+        }
+        resources {
+            excludes += ['META-INF/*']
+        }
+    }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
+
+
+    testOptions.unitTests {
+        includeAndroidResources = true
+        returnDefaultValues = true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:version_kotlin'
+    implementation "androidx.appcompat:appcompat:$version_appcompat"
+    implementation "com.google.android.material:material:$version_material"
+    implementation "androidx.constraintlayout:constraintlayout:$version_constraint_layout"
+
+    // Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$version_navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$version_navigation"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
+    implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
+
+    // Okhttp
+    implementation "com.squareup.okhttp3:logging-interceptor:$version_okhttp"
+
+    // Room
+    implementation("androidx.room:room-runtime:$version_room")
+    kapt("androidx.room:room-compiler:$version_room")
+    implementation "androidx.room:room-ktx:$version_room"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$version_glide"
+    kapt "com.github.bumptech.glide:compiler:$version_glide"
+
+    // Moshi
+    implementation "com.squareup.moshi:moshi:$version_moshi"
+    implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
+    implementation "com.squareup.moshi:moshi-adapters:$version_moshi"
+
+    // Hilt
+    implementation "com.google.dagger:hilt-android:$version_hilt"
+    kapt "com.google.dagger:hilt-android-compiler:$version_hilt"
+
+    // Use viewModelScope from lifecycle-viewmodel-ktx
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$version_lifecycle_viewmodel"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$version_lifecycle_viewmodel"
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_kotlin_coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_kotlin_coroutines"
+
+    // Timber
+    implementation "com.jakewharton.timber:timber:$version_timber"
+
+    // Flexbox Layout
+    implementation "com.google.android.flexbox:flexbox:$version_flexbox"
+
+    // Google Places
+    implementation 'com.google.android.libraries.places:places:2.6.0'
+
+    // Dependencies for local unit tests
+    testImplementation "junit:junit:$version_junit"
+    testImplementation "org.junit.jupiter:junit-jupiter:$version_junit_jupiter"
+    testImplementation "org.hamcrest:hamcrest:$version_hamcrest"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version_kotlin_coroutines"
+    testImplementation "org.mockito:mockito-core:$version_mockito"
+
+
+    // AndroidX Test - Instrumented testing
+    androidTestImplementation "junit:junit:$version_junit"
+    testImplementation "org.junit.jupiter:junit-jupiter:$version_junit_jupiter"
+    androidTestImplementation "androidx.test.ext:junit:$version_androidx_test_ext_kotlin_runner"
+    androidTestImplementation "androidx.arch.core:core-testing:$version_arch_testing"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version_kotlin_coroutines"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
+}
+
+kapt {
+    correctErrorTypes = true
+}

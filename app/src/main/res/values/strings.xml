@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">RTL Case</string>
+    <string name="format_temperature">%.0f\u2103</string>
+    <string name="format_temperature_max_min">%.0f\u2103/%.0f\u2103</string>
+    <string name="format_feels_like">Feels like: %.0f\u2103</string>
+    <string name="format_humidity">Humidity: %d\%%</string>
+    <string name="humidity">%d\%%</string>
+    <string name="format_wind">Wind: %.2fm/h</string>
+    <string name="wind">%.2fm/s</string>
+    <string name="format_rain_chance">%.0f%%</string>
+    <string name="empty_list">You don\'t have any saved locations.\nUse upper right button to add one.</string>
+    <string name="canceled_places_screen">Unable to add a place.</string>
+    <string name="places_api_key">AIzaSyAUVcFuiWjp628ZkBhXxCwFRCY-Ci5pfeo</string>
+    <string name="weather_report">Weather Report</string>
+    <string name="remove">Remove location</string>
+    <string name="remove_message">Do you want to remove %s from the list?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="weekly_forecast">Weekly Forecast</string>
+    <string name="today">Today</string>
+    <string name="day">Day</string>
+    <string name="status">Status</string>
+    <string name="title_wind">Wind</string>
+    <string name="title_temperature">Temperature</string>
+    <string name="rain">Rain</string>
+    <string name="rain_and_pop">%.2fmm / %.0f%%</string>
+    <string name="humidity_title">Humidity</string>
+</resources>

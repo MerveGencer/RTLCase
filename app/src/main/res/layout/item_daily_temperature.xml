@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="weather"
+            type="com.mergencer.rtlcase.data.model.Weather" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:paddingBottom="20dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_day"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/iv_temperature"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_temperature"
+            app:layout_constraintStart_toStartOf="parent"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            android:textSize="14sp"
+            app:layout_constraintWidth_percent="0.15"
+            app:dayOfWeek="@{weather.currentTime}"
+            tools:text="Sun" />
+
+        <TextView
+            android:id="@+id/tv_day_and_month"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tv_day"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_temperature"
+            app:layout_constraintStart_toStartOf="parent"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            android:textSize="12sp"
+            app:layout_constraintWidth_percent="0.15"
+            app:dayOfMonth="@{weather.currentTime}"
+            tools:text="4 Jul" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_temperature"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            app:layout_constraintWidth_percent="0.15"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_day"
+            app:weatherIcon="@{weather.weatherDescription}"
+            android:scaleType="fitCenter"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            tools:text="17\u2103" />
+
+        <TextView
+            android:id="@+id/tv_temperature"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/iv_temperature"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_temperature"
+            app:layout_constraintStart_toEndOf="@+id/iv_temperature"
+            app:layout_constraintWidth_percent="0.23"
+            android:gravity="start"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:textSize="14sp"
+            android:text="@{String.format(@string/format_temperature_max_min, weather.temp.max, weather.temp.min)}"
+            tools:text="17\u2103/23\u2103" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_wind"
+            android:layout_width="0dp"
+            android:scaleType="fitXY"
+            app:layout_constraintWidth_percent="0.05"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/iv_temperature"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_temperature"
+            app:layout_constraintStart_toEndOf="@+id/tv_temperature"
+            app:srcCompat="@drawable/ic_wind"
+            android:rotation="@{90+weather.windDegree}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_wind"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/iv_temperature"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_temperature"
+            app:layout_constraintStart_toEndOf="@+id/iv_wind"
+            app:layout_constraintWidth_percent="0.15"
+            android:gravity="start"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:text="@{String.format(@string/wind, weather.windSpeed)}"
+            android:textSize="12sp"
+            tools:text="17.12m/h"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_rain"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/iv_temperature"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_temperature"
+            app:layout_constraintStart_toEndOf="@+id/tv_wind"
+            app:layout_constraintWidth_percent="0.27"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:textSize="14sp"
+            tools:text="0,0mm / 5%"
+            android:text="@{String.format(@string/rain_and_pop, weather.probabilityOfRain, weather.probabilityOfPrecipitation*100)}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
